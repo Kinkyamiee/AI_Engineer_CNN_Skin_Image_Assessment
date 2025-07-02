@@ -1,4 +1,4 @@
-Here's a complete `README.md` you can use for your project that builds and compares a custom CNN vs. ResNet50 for **skin condition image classification**, following your workflow:
+Here's a complete `README.md` you can use for this project that builds and compares a custom CNN vs. ResNet50 for **skin condition image classification**, following your workflow:
 
 ---
 
@@ -60,11 +60,6 @@ skin\_dataset/
    - Evaluated both models on the test set
    - Visualized confusion matrix
 
-5. **Model Deployment Suggestion**
-   - Converted the best model to TensorFlow Lite (`.tflite`) for use in mobile apps
-
----
-
 ## 📊 Results
 
 | Model     | Test Accuracy | Test Loss |
@@ -74,19 +69,6 @@ skin\_dataset/
 
 > *Performance may vary based on fine-tuning and dataset balance.
 
----
-
-## 📦 Deployment
-
-The trained ResNet50 model was converted to TensorFlow Lite format:
-
-```bash
-resnet_skin_classifier.tflite
-````
-
-This allows for integration with mobile health apps (Android, iOS, or Flutter) for **on-device skin condition analysis**.
-
----
 
 ## ✅ Requirements
 
