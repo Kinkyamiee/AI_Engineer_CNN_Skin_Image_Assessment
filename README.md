@@ -1,11 +1,6 @@
-Here’s your updated `README.md` file reflecting all the latest updates — including **EfficientNet**, **Streamlit app**, and **TensorFlow Lite deployment options**:
+SKIN CONDITION CLASSIFICATION USING CNN, RESNET50 & EFFICIENTNET
 
----
-
-```markdown
-# 🩺 Skin Condition Classification using CNN, ResNet50 & EfficientNet
-
-This project builds, trains, and evaluates three deep learning models to classify skin condition images into **6 common categories**:
+This project builds, trains, and evaluates three deep learning models to classify skin condition images into 6 common categories:
 
 - Acne
 - Cancer
@@ -14,26 +9,26 @@ This project builds, trains, and evaluates three deep learning models to classif
 - Milia
 - Rosacea
 
-Models implemented:
-- ✅ Custom CNN (from scratch)
-- ✅ ResNet50 (transfer learning)
-- ✅ EfficientNetB0 (lightweight + high accuracy)
+Models Implemented:
+- Custom CNN (from scratch)
+- ResNet50 (transfer learning)
+- EfficientNetB0 (lightweight and high accuracy)
 
----
+----------------------------------------------------------
+DATASET
 
-## 📁 Dataset
+Dataset Source: ASCID - Augmented Skin Conditions Image Dataset
+Link: https://www.kaggle.com/datasets/syedalinaqvi/augmented-skin-conditions-image-dataset
 
-The dataset used is from the [ASCID - Augmented Skin Conditions Image Dataset](https://www.kaggle.com/datasets/syedalinaqvi/augmented-skin-conditions-image-dataset), which includes:
-
+Details:
 - 2,394 images
-- 399 per class
+- 399 images per class
 - Augmented to increase variability
-- Organized in folders per condition
+- Each condition is stored in its own subdirectory
 
-### 📂 Directory Structure (after setup)
-```
+Directory Structure (after setup):
 
-skin\_dataset/
+skin_dataset/
 ├── acne/
 ├── cancer/
 ├── eczema/
@@ -41,120 +36,100 @@ skin\_dataset/
 ├── milia/
 └── rosacea/
 
-````
+----------------------------------------------------------
+PROJECT WORKFLOW
 
----
+1. Data Loading and Preprocessing
+- Used image_dataset_from_directory
+- Resized all images to 224x224
+- Dataset split: 70% training, 15% validation, 15% testing
 
-## 🚀 Project Workflow
+2. Model Building
+- CNN: 3 convolutional layers with batch normalization and dropout
+- ResNet50: Pretrained base with frozen layers and custom top
+- EfficientNetB0: Pretrained and fine-tuned, best trade-off of size and accuracy
 
-1. **Data Loading & Preprocessing**
-   - Used `image_dataset_from_directory`
-   - Images resized to `(224x224)`
-   - Train/Validation/Test split: 70/15/15
+3. Training and Evaluation
+- Models trained with EarlyStopping and ModelCheckpoint
+- Evaluated using accuracy, loss, and confusion matrix
 
-2. **Model Building**
-   - ✅ CNN: 3 Conv layers + BatchNorm + Dropout
-   - ✅ ResNet50: Frozen base + Dense layers
-   - ✅ EfficientNetB0: Best performance with fewer params
+4. Model Comparison
+- Validation accuracy and loss plotted for all three models
+- EfficientNetB0 showed the highest performance
 
-3. **Training & Evaluation**
-   - EarlyStopping & ModelCheckpoint used
-   - Trained for 10–20 epochs
-   - Evaluated using accuracy, loss, and confusion matrix
+5. Streamlit App
+- A web-based tool to test the model on uploaded skin images
+- Shows predicted condition and top 3 classes with confidence scores
 
-4. **Model Comparison**
-   - Accuracy and loss plotted
-   - EfficientNet outperformed CNN and ResNet50
+6. Deployment
+- Model exported in .keras and .tflite formats
+- Ready for mobile health app integration (Android, iOS, Flutter)
 
-5. **Streamlit Web App**
-   - Users can upload a skin image
-   - App predicts condition + confidence score
-   - Deployed locally or to Streamlit Cloud
+----------------------------------------------------------
+MODEL PERFORMANCE
 
+Example Results:
 
-## 🧪 Model Results (Example)
+Model        | Test Accuracy
+-------------|----------------
+CNN          | Approximately 39%
+ResNet50     | Approximately 89%
+EfficientNet | Approximately 93%
 
-| Model        | Test Accuracy | Notes                        |
-|--------------|---------------|------------------------------|
-| CNN          | ~39%          | Basic, prone to overfitting  |
-| ResNet50     | ~89%          | Better, deeper features      |
-| EfficientNet | ✅ **~93%**   | Best accuracy + efficiency   |
+Note: Actual results may vary based on training environment and tuning.
 
-> Note: Accuracy may vary slightly based on training setup and environment.
+----------------------------------------------------------
+STREAMLIT APP
 
----
+Features:
+- Upload any skin image (JPEG/PNG)
+- Returns the predicted skin condition with confidence
+- Displays top 3 predictions with their probability
 
-## 💻 Streamlit App
+How to run locally:
+1. Install Streamlit using: pip install streamlit
+2. Run the app: streamlit run app.py
 
-### 📸 Features:
-- Upload any skin image
-- Classifies into one of 6 conditions
-- Shows top 3 predictions with confidence
-- Responsive and easy to use
+----------------------------------------------------------
+DEPLOYMENT OPTIONS
 
-### ▶️ Run the App Locally
+1. Exported model as best_model.keras
+2. Converted to TensorFlow Lite for mobile apps:
+   - resnet_skin_classifier.tflite
+3. Can be embedded in Android, iOS, or Flutter applications
 
-```bash
-streamlit run app.py
-````
+----------------------------------------------------------
+REQUIREMENTS
 
----
+- Python 3.8+
+- TensorFlow 2.9+
+- Streamlit
+- Pillow
+- NumPy
+- Matplotlib
+- scikit-learn
 
-## 🔄 Model Export & Mobile Deployment
-
-* Models saved in `.keras` format:
-
-  ```bash
-  model.save('best_model.keras')
-  ```
-
-* Exported to TensorFlow Lite:
-
-  ```python
-  converter = tf.lite.TFLiteConverter.from_keras_model(model)
-  tflite_model = converter.convert()
-  ```
-
-* TFLite model ready for mobile apps (Android, iOS, Flutter)
-
----
-
-## 🔧 Requirements
-
-* Python 3.8+
-* TensorFlow 2.9+
-* Streamlit
-* PIL, NumPy, Matplotlib, scikit-learn
-
-You can install dependencies via:
-
-```bash
+Install all dependencies:
 pip install -r requirements.txt
-```
 
----
+----------------------------------------------------------
+LESSONS LEARNED
 
-## 🧠 Lessons Learned
+- Transfer learning significantly improves performance
+- EfficientNetB0 offers high accuracy with a lightweight footprint
+- Streamlit is powerful for quickly building ML demos
+- TensorFlow Lite simplifies model deployment on mobile devices
 
-* Transfer learning greatly improves performance
-* EfficientNet provides high accuracy + low size
-* Streamlit is ideal for demoing ML models to users
-* TensorFlow Lite makes deployment to mobile feasible
+----------------------------------------------------------
+FUTURE IMPROVEMENTS
 
----
+- Integrate Grad-CAM visual explanations for model transparency
+- Collect more diverse, real-world data for fine-tuning
+- Add REST API endpoint for backend integration
+- Build a Flutter app with on-device inference using TFLite
 
-## ✨ Future Improvements
+----------------------------------------------------------
+AUTHOR
 
-* Add Grad-CAM explainability
-* Collect real-world samples for fine-tuning
-* Deploy full app with TFLite in a Flutter app
-* Build REST API for backend inference
-
----
-
-## 👩‍💻 Author
-
-**Amiee Hyacinth**
+Amiee Hyacinth
 AI Engineer | Machine Learning Specialist
-[LinkedIn](#) • [GitHub](#) • [Portfolio](#)
-
